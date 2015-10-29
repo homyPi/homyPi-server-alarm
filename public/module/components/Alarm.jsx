@@ -27,7 +27,7 @@ export default React.createClass({
     }
   },
   render() {
-    let {alarm, enable} = this.props;//
+    let {alarm, enable} = this.props;
     
     return (
       <div className={alarm.enable ? "alarm enabled": "alarm disabled"}>

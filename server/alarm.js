@@ -9,8 +9,7 @@ var AlarmModels  = require(__base + "models/mongoose/mongoose-models").Alarm;
 var post = function(req, res) {
 	console.log("got new alarm: " + req.body.alarm.hours + ":" + req.body.alarm.minutes);
 	if (!req.body.alarm || isNaN(req.body.alarm.hours) || isNaN(req.body.alarm.minutes)) {
-		console.log("NOOOOOOOOOPE");
-		return res.json({error: "invalid request"});
+		eturn res.json({error: "invalid request"});
 	}
 	var alarm = new Alarm(req.user, req.body.alarm.hours, req.body.alarm.minutes);
 	alarm.save(function(err) {

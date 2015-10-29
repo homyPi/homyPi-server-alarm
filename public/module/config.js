@@ -6,6 +6,7 @@ import {MenuItem} from "material-ui";
 import AlarmList from './components/AlarmList';
 
 module.exports = {
+	name: "Alarms",
 	routes: (
 		<Route name="alarms" path="alarms" component={AlarmList} />
 	),
