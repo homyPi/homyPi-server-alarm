@@ -4,7 +4,7 @@ module.exports = {
 	"path": "alarms",
 	"require": [{module: "homyPi-server-music", version: "0.1"}],
 	"schemas": {
-		alarm: {
+		Alarm: {
 			user: Schema.Types.Mixed,
 			hours: { type: Number, min: 0, max: 23 },
 			minutes: { type: Number, min: 0, max: 59 },
