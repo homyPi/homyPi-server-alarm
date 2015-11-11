@@ -56,6 +56,6 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/babel ./public/module -d ./public/lib",
-    "postinstall": "mkdir ./public/lib -p; npm run build"
+    "postinstall": "npm run build"
   }
 }
