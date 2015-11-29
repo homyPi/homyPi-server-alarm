@@ -10,7 +10,7 @@ var Alarm = function(user, raspberry, hours, minutes, repeat, source, enable) {
 	"use strict";
 	AlarmModel.call(this);
 	this.user = user;
-	this.raspberry = raspberryName;
+	this.raspberry = raspberry;
 	this.hours = hours;
 	this.minutes = minutes;
 	this.repeat = repeat || false;
