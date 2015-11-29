@@ -5,14 +5,22 @@ var Alarm  = require("./Alarm");
 
 module.exports = function(socket) {
 	socket.on("alarms:get", function(request) {
-		console.log(request);
-		if (!request) {
-			Alarm.getAll()
+		if (socket.raspberryInfo && socket.raspberryInfo.name) {
+			Alarm.getByRaspberry(socket.raspberryInfo.name)
 				.then(function(alarms) {
 					socket.emit("alarms:update", {alarms: alarms});
-				}).catch(function(error) {
+				}).catch(function(err) {
 					socket.emit("error", {err: error});
 				});
+		} else {
+			if (!request) {
+				Alarm.getAll()
+					.then(function(alarms) {
+						socket.emit("alarms:update", {alarms: alarms});
+					}).catch(function(error) {
+						socket.emit("error", {err: error});
+					});
+			}
 		}
 	})
 

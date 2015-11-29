@@ -6,10 +6,11 @@ var AlarmModel = require("../Link").MongooseModels.Alarm;
 var Promise = require("bluebird");
 var _ = require("lodash");
 
-var Alarm = function(user, hours, minutes, repeat, source, enable) {
+var Alarm = function(user, raspberry, hours, minutes, repeat, source, enable) {
 	"use strict";
 	AlarmModel.call(this);
 	this.user = user;
+	this.raspberry = raspberryName;
 	this.hours = hours;
 	this.minutes = minutes;
 	this.repeat = repeat || false;
@@ -47,6 +48,16 @@ Alarm.getOne = function(id) {
 		});
 	});
 };
+Alarm.getByRaspberry = function(raspberryName) {
+	return new Promise(function (resolve, reject) {
+		AlarmModel.find({"raspberry.name": raspberryName}, function(err, alarms) {
+			if (err) {
+				return reject(err);
+			}
+			return resolve(alarms);
+		})
+	});
+}
 Alarm.getByUser = function(userId) {
 	return new Promise(function (resolve, reject) {
 		AlarmModel.find({"user._id": userId}, function(err, alarms) {

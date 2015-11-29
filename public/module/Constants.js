@@ -12,7 +12,8 @@ export default {
     ADD_ALARM: null,
     UPDATE_ALARM: null,
     SET_ARTIST: null,
-    SET_MY_ARTISTS: null
+    SET_MY_ARTISTS: null,
+    CLEAR: null
   }),
   MusicSearchActionTypes: keyMirror({
     SET_RESULTS: null

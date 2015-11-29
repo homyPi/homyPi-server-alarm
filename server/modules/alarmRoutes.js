@@ -3,6 +3,7 @@ module.exports = function(router) {
 	var UserMiddleware = require("../Link").User.middleware;
 
 	router.get('/', UserMiddleware.isLoggedIn, AlarmMiddleware.getAll);
+	router.get('/raspberries/:raspberryName', UserMiddleware.isLoggedIn, AlarmMiddleware.getAllForRaspberry);
 	router.post('/', UserMiddleware.isLoggedIn, AlarmMiddleware.post);
 	router.get('/:id', UserMiddleware.isLoggedIn, AlarmMiddleware.getOne);
 	router.delete('/:id', UserMiddleware.isLoggedIn, AlarmMiddleware.remove);

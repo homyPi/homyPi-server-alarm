@@ -7,11 +7,14 @@ var AlarmModels  = require("../Link").MongooseModels.Alarm;
  * @param  {Object} res express response object
  */
 var post = function(req, res) {
-	console.log("got new alarm: " + req.body.alarm.hours + ":" + req.body.alarm.minutes);
-	if (!req.body.alarm || isNaN(req.body.alarm.hours) || isNaN(req.body.alarm.minutes)) {
+	if (!req.body.raspberry ||
+		!req.body.raspberry.name ||
+		!req.body.alarm || 
+		isNaN(req.body.alarm.hours) || 
+		isNaN(req.body.alarm.minutes)) {
 		return res.json({error: "invalid request"});
 	}
-	var alarm = new Alarm(req.user, req.body.alarm.hours, req.body.alarm.minutes);
+	var alarm = new Alarm(req.user, req.body.raspberry, req.body.alarm.hours, req.body.alarm.minutes);
 	alarm.save(function(err) {
 		if (err) {
 			return res.json({error: err});
@@ -30,6 +33,24 @@ var getAll = function(req, res) {
 			return res.json({alarms: alarms});
 		}).catch(function(error) {
 			return res.json(error);
+		});
+};
+/**
+ * Get all alarms for a raspberry
+ */
+var getAllForRaspberry = function(req, res) {
+	if (!req.params.raspberryName) return res.json({status: "error", error: {message: "invalid request"}});
+	Alarm.getByRaspberry(req.params.raspberryName)
+		.then(function(alarms) {
+			return res.json({
+				status: "success", 
+				data: {
+					items: alarms, 
+					total: alarms.length
+				}
+			});
+		}).catch(function(error) {
+			return res.json({status: "error", error: error});
 		});
 };
 
@@ -122,6 +143,7 @@ var remove = function(req, res) {
 module.exports = {
 	post: post,
 	getAll: getAll,
+	getAllForRaspberry: getAllForRaspberry,
 	getOne: getOne,
 	remove: remove,
 	getHistory: getHistory,

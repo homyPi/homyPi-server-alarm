@@ -46,6 +46,10 @@ function compare(a, b) {
   return 0;
 }
 
+function clear() {
+  _data = [];
+}
+
 // Facebook style store creation.
 const AlarmStore = assign({}, BaseStore, {
   // public methods used by Controller-View to operate on data
@@ -59,6 +63,10 @@ const AlarmStore = assign({}, BaseStore, {
   dispatcherIndex: Dispatcher.register(function(payload) {
     let action = payload.action;
     switch(action.type) {
+      case Constants.ActionTypes.CLEAR:
+        clear();
+        AlarmStore.emitChange();
+        break;
       case Constants.ActionTypes.ALARM_ADDED:
         let alarm = action.alarm;
         addItem(null,alarm.hours, alarm.minutes, alarm.enable);

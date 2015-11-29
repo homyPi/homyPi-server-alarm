@@ -9,10 +9,10 @@ function setHeaders(xhr) {
 }
 
 export default {
-	getAlarms() {
+	getAlarms(raspberry) {
 		return new Promise((resolve, reject) => {
 			$.ajax({
-					url: serverUrl + "/",
+					url: serverUrl + "/raspberries/" + raspberry.name,
 					type: "GET",
 					beforeSend: setHeaders,
 					success: function(resp) {
@@ -40,7 +40,8 @@ export default {
 				});
 		});
 	},
-	insertAlarm(alarm) {
+	insertAlarm(raspberry, alarm) {
+		alarm.raspberry = raspberry;
 		return new Promise((resolve, reject) => {
 			$.ajax({
 					url: serverUrl + "/",
@@ -60,6 +61,7 @@ export default {
 		});
 	},
 	updateAlarm(alarm) {
+		alarm.raspberry = raspberry;
 		return new Promise((resolve, reject) => {
 			$.ajax({
 					url: serverUrl + "/" + alarm._id,

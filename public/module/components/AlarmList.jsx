@@ -30,10 +30,13 @@ export default React.createClass({
     AlarmActions.deleteAlarm(alarm);
   },
   addAlarm() {
-    AlarmActions.addAlarm({hours: 8, minutes:0});
+    AlarmActions.addAlarm(raspberry, {hours: 8, minutes:0});
   },
   editAlarm(alarm) {
-    AlarmActions.editAlarm(alarm);
+    var raspberry = Link.getRaspberries().selectedRaspberry;
+    if (raspberry) {
+      AlarmActions.editAlarm(raspberry, alarm);
+    }
   },
   enableAlarm(alarm, event) {
     AlarmActions.enableAlarm(alarm, event.target.checked);
