@@ -28,11 +28,11 @@ export default {
       
     })
   },
-  addAlarm(alarm) {
+  addAlarm(raspberry, alarm) {
     Dispatcher.handleViewAction({
         type: Constants.ActionTypes.ADD_ALARM,
         alarm: alarm,
-        raspberry: rapsberry
+        raspberry: raspberry
       });
   },
   editAlarm(raspberry, alarm) {

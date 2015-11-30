@@ -6,6 +6,7 @@ module.exports = {
 	"schemas": {
 		Alarm: {
 			user: Schema.Types.Mixed,
+			raspberry: Schema.Types.Mixed,
 			hours: { type: Number, min: 0, max: 23 },
 			minutes: { type: Number, min: 0, max: 59 },
 			enable: Boolean,

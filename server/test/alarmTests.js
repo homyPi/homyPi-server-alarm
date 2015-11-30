@@ -9,16 +9,9 @@ var configs = {
 	}
 }
 
-var alarmModule = require("../config")
-alarmModule.module = require("../");
-
-var musicModule = require("homyPi-server-music/server/config")
-musicModule.module = require("homyPi-server-music/server/");
-
-var testTool = new TestTool(["homyPi-server-music", "homyPi-server-alarm"], {
-	"homyPi-server-alarm": alarmModule,
-	"homyPi-server-music": musicModule
-}, configs);
+var testTool = new TestTool(configs);
+testTool.addModule("homyPi-server-alarm", require("../config"), require("../"));
+testTool.addModule("homyPi-server-music",require("homyPi-server-music/server/config"),require("homyPi-server-music/server/"));
 
 var alarm;
 

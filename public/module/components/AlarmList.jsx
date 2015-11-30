@@ -3,7 +3,7 @@ import AlarmStore from '../stores/AlarmStore';
 import AlarmActions from '../actions/AlarmActionCreators';
 import Alarm from './Alarm';
 import {Paper, RaisedButton, TimePicker} from 'material-ui';
-
+import Link from "../Link";
 export default React.createClass({
   getDefaultProps() {
     return {};
@@ -21,6 +21,7 @@ export default React.createClass({
   },
   componentDidMount() {
     AlarmStore.addChangeListener(this._onChange);
+    this.refs.timePicker._handleInputTouchTap(new Event('build'));
   },
 
   componentWillUnmount() {
@@ -30,7 +31,10 @@ export default React.createClass({
     AlarmActions.deleteAlarm(alarm);
   },
   addAlarm() {
-    AlarmActions.addAlarm(raspberry, {hours: 8, minutes:0});
+    var raspberry = Link.getRaspberries().selectedRaspberry;
+    if (raspberry) {
+      AlarmActions.addAlarm(raspberry, {hours: 8, minutes:0});
+    }
   },
   editAlarm(alarm) {
     var raspberry = Link.getRaspberries().selectedRaspberry;

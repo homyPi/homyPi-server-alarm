@@ -16,8 +16,11 @@ export default {
 					type: "GET",
 					beforeSend: setHeaders,
 					success: function(resp) {
-						
-						resolve(resp.alarms);
+						if(resp.status === "success") {
+							resolve(resp.data.items);
+						} else {
+							reject(resp.error);
+						}
 					},
 					fail: function(err) {
 						reject(err)
@@ -41,18 +44,21 @@ export default {
 		});
 	},
 	insertAlarm(raspberry, alarm) {
-		alarm.raspberry = raspberry;
 		return new Promise((resolve, reject) => {
 			$.ajax({
 					url: serverUrl + "/",
 					type: "POST",
-				    data: JSON.stringify({ alarm: alarm }),
+				    data: JSON.stringify({ alarm: alarm, raspberry: raspberry }),
 				    contentType: "application/json; charset=utf-8",
 				    dataType: "json",
 					beforeSend: setHeaders,
 					success: function(resp) {
-						alarm._id = resp.alarm._id;
-						resolve(alarm);
+						if (resp.error) {
+							return reject(resp.error);
+						} else {
+							alarm._id = resp.alarm._id;
+							return resolve(alarm);
+						}
 					},
 					fail: function(err) {
 						reject(err)
