@@ -114,7 +114,7 @@ var edit = function(req, res) {
 	} else {
 		AlarmModels.findByIdAndUpdate(req.params.alarmId, {
 			"$set": req.body
-		}, function(err, alarm) {
+		}, {"new": true}, function(err, alarm) {
 			if (err) {
 				console.error(err);
 				return res.json(err);
