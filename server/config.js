@@ -24,6 +24,15 @@ module.exports = {
 			}]
 		}
 	},
+	"externals": [
+		{
+			baseSchema: "Artist",
+			name: "alarm",
+			schema: {
+				doNotUseAsAlarm: Boolean
+			}
+		}
+	],
 	"setSchemas": function(schemaDescriptions) {
 		mongoose.model('Alarm', new Schema(schemaDescriptions.alarm));	
 	}

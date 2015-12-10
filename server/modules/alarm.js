@@ -1,6 +1,6 @@
 var Alarm  = require("./Alarm");
 var AlarmModels  = require("../Link").MongooseModels.Alarm;
-
+var Raspberry = require("../Link").Raspberry;
 /**
  * Add a new alarm
  * @param  {Object} req express request object
@@ -119,6 +119,7 @@ var edit = function(req, res) {
 				console.error(err);
 				return res.json(err);
 			} else {
+				Raspberry.emitTo(alarm.raspberry.name, "alarm:updated", {alarm: alarm});
 				return res.json({alarm: alarm});
 			}
 		})

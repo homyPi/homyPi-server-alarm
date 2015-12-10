@@ -18,9 +18,6 @@ export default React.createClass({
     alarm.minutes = newDate.getMinutes();
     this.props.editAlarm(alarm)
   },
-  change() {
-    
-  },
   componentDidMount() {
     if (!this.props.alarm._id) {
       this.refs.timePicker._handleInputTouchTap(new Event('build'));
