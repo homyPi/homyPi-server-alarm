@@ -133,7 +133,7 @@ var remove = function(req, res) {
 	if (!req.params.id) {
 		return res.json({error: "bad request"});
 	}
-	Alarm.getOne(req.params.id).then(function(alarm)
+	Alarm.getOne(req.params.id).then(function(alarm) {
 		Alarm.model.remove({_id: req.params.id}, function(err) {
 			if (err) {
 				return res.json({error: err});
