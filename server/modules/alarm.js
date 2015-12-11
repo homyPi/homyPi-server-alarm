@@ -133,11 +133,17 @@ var remove = function(req, res) {
 	if (!req.params.id) {
 		return res.json({error: "bad request"});
 	}
-	Alarm.model.remove({_id: req.params.id}, function(err) {
+	Alarm.findById(req.params.id, function(err, alarm) {
 		if (err) {
 			return res.json({error: err});
 		}
-		return res.json({success: "sucess"});
+		Alarm.model.remove({_id: req.params.id}, function(err) {
+			if (err) {
+				return res.json({error: err});
+			}
+			Raspberry.emitTo(alarm.raspberry.name, "alarm:removed", {alarm: alarm});
+			return res.json({success: "sucess"});
+		});
 	})
 };
 
