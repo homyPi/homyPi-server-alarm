@@ -1,20 +1,10 @@
 var routes = require("./modules/alarmRoutes");
-var Link = require("./Link");
+
 module.exports = {
-	setSocket: function(socket) {
-		require("./modules/alarmSocket")(socket);
-	},
-	routes: function(app, router) {
-		routes(router);
-		return router;
-	},
-	config: require("./config"),
-	link: function(moduleManager, Raspberry, MongooseModels, UserMiddleware) {
-		console.log("Alarm: link");
-		Link.Raspberry = Raspberry;
-		Link.MongooseModels = MongooseModels;
-		Link.User = {
-			middleware: UserMiddleware
-		}
-	}
-}
+    routes: function (app, router) {
+        routes(router);
+        return router;
+    },
+    config: require("./config"),
+    link: require("./link")
+};

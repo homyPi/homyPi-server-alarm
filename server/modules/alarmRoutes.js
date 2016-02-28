@@ -1,17 +1,17 @@
-module.exports = function(router) {
-	var AlarmMiddleware = require("./alarm");
-	var UserMiddleware = require("../Link").User.middleware;
+module.exports = function (router) {
+    var AlarmMiddleware = require("./alarm");
+    var User = require("../link").getShared().User;
 
-	router.get('/', UserMiddleware.isLoggedIn, AlarmMiddleware.getAll);
-	router.get('/raspberries/:raspberryName', UserMiddleware.isLoggedIn, AlarmMiddleware.getAllForRaspberry);
-	router.post('/', UserMiddleware.isLoggedIn, AlarmMiddleware.post);
-	router.get('/:id', UserMiddleware.isLoggedIn, AlarmMiddleware.getOne);
-	router.delete('/:id', UserMiddleware.isLoggedIn, AlarmMiddleware.remove);
+    router.get("/", User.isLoggedIn, AlarmMiddleware.getAll);
+    router.get("/raspberries/:raspberryName", User.isLoggedIn, AlarmMiddleware.getAllForRaspberry);
+    router.post("/", User.isLoggedIn, AlarmMiddleware.post);
+    router.get("/:id", User.isLoggedIn, AlarmMiddleware.getOne);
+    router.delete("/:id", User.isLoggedIn, AlarmMiddleware.remove);
 
-	router.put('/:alarmId', UserMiddleware.isLoggedIn, AlarmMiddleware.edit);
+    router.put("/:alarmId", User.isLoggedIn, AlarmMiddleware.edit);
 
-	router.get("/:alarmId/history", UserMiddleware.isLoggedIn, AlarmMiddleware.getHistory)
-	router.post("/:alarmId/history", UserMiddleware.isLoggedIn, AlarmMiddleware.addHistory)
+    router.get("/:alarmId/history", User.isLoggedIn, AlarmMiddleware.getHistory);
+    router.post("/:alarmId/history", User.isLoggedIn, AlarmMiddleware.addHistory);
 
-	return router;
+    return router;
 };

@@ -6,6 +6,7 @@
   "dependencies": {
     "babel": "^5.4.7",
     "flux": "^2.1.1",
+    "history": "^1.17.0",
     "homyPi-server-music": "git+https://github.com/homyPi/homyPi-server-music.git",
     "install": "^0.3.0",
     "jquery": "^2.1.4",
@@ -39,7 +40,7 @@
     "bundle-loader": "^0.5.2",
     "css-loader": "^0.19.0",
     "eslint": "1.4.0",
-    "eslint-plugin-react": "3.3.2",
+    "eslint-plugin-react": "^3.11.3",
     "expect": "1.10.0",
     "homyPi_webApp": "git+https://github.com/homyPi/homyPi_server.git",
     "karma": "^0.13.8",
