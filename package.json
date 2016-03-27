@@ -4,7 +4,6 @@
   "author": "Youenn PENNARUN",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "babel": "^5.4.7",
     "flux": "^2.1.1",
     "history": "^1.17.0",
     "homyPi-server-music": "git+https://github.com/homyPi/homyPi-server-music.git",
@@ -45,7 +44,6 @@
     "eslint": "1.4.0",
     "eslint-plugin-react": "^3.11.3",
     "expect": "1.10.0",
-    "homyPi_webApp": "git+https://github.com/homyPi/homyPi_server.git",
     "karma": "^0.13.8",
     "karma-browserstack-launcher": "^0.1.4",
     "karma-chrome-launcher": "^0.2.0",
